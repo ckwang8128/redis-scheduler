@@ -169,8 +169,8 @@ private
     def [] start, num=nil
       elements = @redis.zrange @q, start, start + (num || 0) - 1, :withscores => true
       v = elements.each_slice(2).map do |item, at|
-        item =~ /^\d+:(\S+)$/ or raise InvalidEntryException, item
-        item = $1
+        #item =~ /^\d+:(\S+)$/ or raise InvalidEntryException, item
+        #item = $1
         [item, Time.at(at.to_f)]
       end
       num ? v : v.first
